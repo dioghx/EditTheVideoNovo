@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <EditText
+        android:id="@+id/editNomeUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nome" />
+
+    <EditText
+        android:id="@+id/editDataUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Data de Nascimento" />
+
+    <EditText
+        android:id="@+id/editTelefoneUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Telefone" />
+
+    <EditText
+        android:id="@+id/editEmailUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Email" />
+
+    <EditText
+        android:id="@+id/editSenhaUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editCidadeUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Cidade" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="104dp">
+
+        <ImageView
+            android:id="@+id/imageUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinnerEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.10" />
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:onClick="btnVoltar"
+        android:text="Voltar" />
+
+    <Button
+        android:id="@+id/btnCadastrarUsuario"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar"
+        android:onClick="cadastrarUsuario"/>
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewMostrarProfissional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        app:srcCompat="@mipmap/ic_launcher_round"
+        android:isIndicator="true"
+        android:layout_above="@+id/editTelefoneMostrarProfissional"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/editNomeMostrarProfissional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:layout_marginEnd="22dp"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:inputType="date"
+        android:text="Nome"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/editEmailMostrarProfissional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:layout_alignStart="@+id/editNomeMostrarProfissional"
+        android:layout_below="@+id/editNomeMostrarProfissional"
+        android:ems="10"
+        android:inputType="date"
+        android:text="Email" />
+
+    <TextView
+        android:id="@+id/editTelefoneMostrarProfissional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editEmailMostrarProfissional"
+        android:layout_below="@+id/editEmailMostrarProfissional"
+        android:ems="10"
+        android:isIndicator="true"
+        android:inputType="phone"
+        android:text="Telefone" />
+
+    <TextView
+        android:id="@+id/editDescricaoMostrarProfissional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editTelefoneMostrarProfissional"
+        android:layout_alignStart="@+id/imageViewMostrarProfissional"
+        android:layout_below="@+id/editTelefoneMostrarProfissional"
+        android:layout_marginTop="68dp"
+        android:ems="10"
+        android:isIndicator="true"
+        android:inputType="date"
+        android:text="Descrição" />
+
+</RelativeLayout>

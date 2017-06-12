@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:andrpod="http://schemas.android.com/tools"
+    android:id="@+id/LayoutProfissional"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <ImageView
+        android:layout_width="123dp"
+        android:layout_height="75dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageProfissional"
+        android:layout_marginTop="128dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBarProfissional"
+        android:numStars="5"
+        android:isIndicator="true"
+        android:layout_below="@+id/imageProfissional"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewNomeProfissional"
+
+        android:layout_weight="0.10"
+        android:layout_below="@+id/ratingBarProfissional"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textViewDescricaoProfissional"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.10"
+        android:text="TextView"
+        android:layout_below="@+id/textViewNomeProfissional"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

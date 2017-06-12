@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:andrid="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+
+    <EditText
+        android:id="@+id/editNomeEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nome Curto" />
+
+    <EditText
+        android:id="@+id/editSocialEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Razao Social" />
+
+    <EditText
+        android:id="@+id/editTelefoneEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Telefone" />
+
+    <EditText
+        android:id="@+id/editEmailEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Email" />
+
+    <EditText
+        android:id="@+id/editTextCidadeEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Cidade" />
+    <EditText
+        android:id="@+id/editTextSenhaEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Senha" />
+
+    <EditText
+        android:id="@+id/editCnpjEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="CNPJ" />
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:onClick="btnVoltar"
+        android:text="Voltar" />
+
+    <Button
+        android:id="@+id/btnCadastrarEmpresa"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar"
+        android:onClick="cadastrarEmpresa"/>
+</LinearLayout>
