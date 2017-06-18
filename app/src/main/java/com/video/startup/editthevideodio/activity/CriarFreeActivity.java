@@ -14,11 +14,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.video.startup.editthevideodio.R;
+import com.video.startup.editthevideodio.connection.ConnectionManager;
+import com.video.startup.editthevideodio.constantes.ConstantesApp;
 import com.video.startup.editthevideodio.model.Profissional;
 import com.video.startup.editthevideodio.util.Util;
 
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
+
+import static com.video.startup.editthevideodio.util.Util.toastShort;
 
 
 /**
@@ -55,81 +59,17 @@ public class CriarFreeActivity extends  Activity{
         profissional.getUsuario().setEmail(editEmailFree.getText().toString());
         profissional.getUsuario().setSenha(editSenhaFree.getText().toString());
         profissional.getUsuario().getEndereco().setCidade(editCidadeFree.getText().toString());
-        if(isConnected()) {
-            new cadastrarProfissional().execute(profissional);
-            Intent paginaPrincipal = new Intent(CriarFreeActivity.this,MainActivity.class);
-            startActivity(paginaPrincipal);
-            finish();
-        }
-        else
-            Toast.makeText(this, "Verifique a conexão com a internet...", Toast.LENGTH_SHORT).show();
-    }
 
-    private class cadastrarProfissional extends AsyncTask<Profissional, Void, String> {
-
-        ProgressDialog progress;
-        int serverResponseCode;
-        String serverResponseMessage;
-
-        @Override
-        protected String doInBackground(Profissional... params) {
-            HttpURLConnection urlConnection = null;
-            try {
-                //Utilizar url do webservice de logar
-                //URL url = new URL("");
-                //urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Content-type", "application/json");
-                urlConnection.setDoInput(true);
-                urlConnection.setDoOutput(true);
-
-                DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
-
-                String result = Util.convertObjectJSON(params[0]);
-                outputStream.writeBytes(result);
-
-                serverResponseCode = urlConnection.getResponseCode();
-                serverResponseMessage = Util.webToString(urlConnection.getInputStream());
-
-                outputStream.flush();
-                outputStream.close();
-
-                return result ;
-            } catch (Exception e) {
-                Log.e("Error", "Error ", e);
-                return null;
-            } finally{
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
-            }
+        try {
+            ConnectionManager.executePOSTAsync(profissional, this, ConstantesApp.APP_CRIAR_FREE, () -> {
+                        toastShort("Empresa cadastrada!",this);
+                        startActivity(new Intent(this, MainActivity.class));
+                    }
+            );
+        } catch (Exception e) {
+            Log.e("Error", "Error ", e);
+            toastShort("Erro ao cadastrar!",this);
         }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Intent telaPrincipal = null;
-            if(Util.getStatusFromJSON(serverResponseMessage).equals("true")) {
-                Toast.makeText(CriarFreeActivity.this, "Profissional cadastrada no sistema...!", Toast.LENGTH_SHORT).show();
-                telaPrincipal = new Intent(CriarFreeActivity.this, MainActivity.class);
-                startActivity(telaPrincipal);
-            }else{
-                Toast.makeText(CriarFreeActivity.this, "Falha ao cadastrar o profissional.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    private boolean isConnected(){
-        ConnectivityManager cm =
-                (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-    }
-    public void btnVoltar(View v)
-    {
-        Intent intent = new Intent(v.getContext(),EscolherCadastroActivity.class);
-        startActivity(intent);
-        finish();
     }
 }
