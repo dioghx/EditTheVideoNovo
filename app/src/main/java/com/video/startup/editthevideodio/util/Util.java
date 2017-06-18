@@ -89,7 +89,7 @@ public class Util {
 
     public static List<Profissional> JSONProfissionalLista(String jsonFile)
     {
-        int x ;
+        int y ;
         JSONObject mainObject;
         Profissional profissional = null;
         List<Profissional> profissionais = null;
