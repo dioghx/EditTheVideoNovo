@@ -134,11 +134,4 @@ public class CriarEmpresaActivity extends Activity {
     }
 
 
-    public void btnVoltar(View v)
-    {
-        Intent intent = new Intent(v.getContext(),EscolherCadastroActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
 }

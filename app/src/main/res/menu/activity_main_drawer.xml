@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 
     <group android:checkableBehavior="single">
         <item
@@ -10,16 +12,13 @@
             android:id="@+id/logarMain"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Logar" />
-        <item
-            android:id="@+id/logarFacebook"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Logar Facebook" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Configurações" />
+
     </group>
 
+    <item
+        android:id="@+id/nav_manage"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Configurações" />
     <item android:title="Compartilhar">
         <menu>
             <item
