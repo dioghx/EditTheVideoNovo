@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.video.startup.editthevideodio.R;
 import com.video.startup.editthevideodio.connection.ConnectionManager;
+import com.video.startup.editthevideodio.connection.dto.GenericDTO;
 import com.video.startup.editthevideodio.constantes.ConstantesApp;
 import com.video.startup.editthevideodio.model.Empresa;
 import com.video.startup.editthevideodio.util.Util;
@@ -63,7 +64,7 @@ public class CriarEmpresaActivity extends Activity {
         empresa.setCnpj(editCnpjEmpresa.getText().toString());
 
         try {
-            ConnectionManager.executePOSTAsync(empresa, this, ConstantesApp.APP_CRIAR_EMPRESA, () -> {
+            ConnectionManager.executePOSTAsync(empresa, this, ConstantesApp.APP_CRIAR_EMPRESA, (GenericDTO dto) -> {
                         toastShort("Empresa cadastrada!",this);
                         startActivity(new Intent(this, MainActivity.class));
                     }

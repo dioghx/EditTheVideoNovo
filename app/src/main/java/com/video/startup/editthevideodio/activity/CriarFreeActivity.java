@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.video.startup.editthevideodio.R;
 import com.video.startup.editthevideodio.connection.ConnectionManager;
+import com.video.startup.editthevideodio.connection.dto.GenericDTO;
 import com.video.startup.editthevideodio.constantes.ConstantesApp;
 import com.video.startup.editthevideodio.model.Profissional;
 import com.video.startup.editthevideodio.util.Util;
@@ -61,7 +62,7 @@ public class CriarFreeActivity extends  Activity{
         profissional.getUsuario().getEndereco().setCidade(editCidadeFree.getText().toString());
 
         try {
-            ConnectionManager.executePOSTAsync(profissional, this, ConstantesApp.APP_CRIAR_FREE, () -> {
+            ConnectionManager.executePOSTAsync(profissional, this, ConstantesApp.APP_CRIAR_FREE, (GenericDTO dto) -> {
                         toastShort("Empresa cadastrada!",this);
                         startActivity(new Intent(this, MainActivity.class));
                     }

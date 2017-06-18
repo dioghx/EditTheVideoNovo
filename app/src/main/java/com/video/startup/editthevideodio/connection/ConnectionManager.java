@@ -69,7 +69,7 @@ public class ConnectionManager {
      * Executa POST de forma assincrona ao servidor sem ação
      */
     public static GenericDTO executePOSTAsync(Object postParam, Context context, String url) throws Exception {
-        return executePOSTAsync(postParam, context, url, () -> {});
+        return executePOSTAsync(postParam, context, url, (GenericDTO dto) -> {});
     }
 
 
@@ -104,8 +104,8 @@ public class ConnectionManager {
             if(!dto.isOk()) {
 //                tratar erro
             }
+            postAction.action(dto);
             payload = dto;
-            postAction.action();
         }
 
         protected boolean isConnected(){
@@ -122,6 +122,6 @@ public class ConnectionManager {
     /**
      * Classes usadas para passagem e execução de ações apos async
      */
-    public interface Action { void action();}
+    public interface Action { void action(GenericDTO dto);}
 
 }

@@ -28,8 +28,12 @@ import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.video.startup.editthevideodio.R;
+import com.video.startup.editthevideodio.connection.ConnectionManager;
+import com.video.startup.editthevideodio.connection.dto.GenericDTO;
+import com.video.startup.editthevideodio.constantes.ConstantesApp;
 import com.video.startup.editthevideodio.model.Usuario;
 import com.video.startup.editthevideodio.util.Util;
+import static com.video.startup.editthevideodio.util.Util.toastShort;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +43,8 @@ import java.net.HttpURLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
+import static com.video.startup.editthevideodio.util.Util.toastShort;
 
 
 /**
@@ -130,89 +136,37 @@ public class TelaLoginActivity extends Activity
         Usuario usuario  = new Usuario();
         usuario.setEmail(editTextEmail.getText().toString());
         usuario.setSenha(editTextSenha.getText().toString());
-        if(isConnected()) {
-            new logarUsuario().execute(usuario);
+        try {
+            ConnectionManager.executePOSTAsync(usuario, this, ConstantesApp.APP_CRIAR_USUARIO, (GenericDTO dto) -> {
+                        Intent telaPrincipal = null;
+                        toastShort("Usuário cadastrado no sistema...!", this);
+                        JSONObject jsonValidação = null;
+                        Usuario user = (Usuario) dto.getObjeto();
+
+                        switch (user.getPermissao()){
+                            case 'p':
+                                //          telaPrincipal = new Intent(TelaLoginActivity.this, PrincipalActivity.class);
+                                startActivity(telaPrincipal);
+                                break;
+                            case 'u':
+                                //        telaPrincipal = new Intent(TelaLoginActivity.this, PrincipalActivity.class);
+                                startActivity(telaPrincipal);
+                                break;
+                            case 'e':
+                                //    telaPrincipal = new Intent(TelaLoginActivity.this, PrincipalActivity.class);
+                                startActivity(telaPrincipal);
+                                break;
+                        }
+
+                    }
+            );
+        } catch (Exception e) {
+            Log.e("Error", "Error ", e);
+            toastShort("Erro ao logar!",this);
         }
     }
 
-    private class logarUsuario extends AsyncTask<Usuario, Void, String> {
 
-        ProgressDialog progress;
-        int serverResponseCode;
-        String serverResponseMessage;
-
-        @Override
-        protected String doInBackground(Usuario... params) {
-            HttpURLConnection urlConnection = null;
-            try {
-                //Utilizar url do webservice de logar
-                //URL url = new URL("");
-               // urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Content-type", "application/json");
-                urlConnection.setDoInput(true);
-                urlConnection.setDoOutput(true);
-
-                DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
-
-                String result = Util.convertObjectJSON(params[0]);
-                outputStream.writeBytes(result);
-
-                serverResponseCode = urlConnection.getResponseCode();
-                serverResponseMessage = Util.webToString(urlConnection.getInputStream());
-
-                outputStream.flush();
-                outputStream.close();
-
-                return result ;
-            } catch (Exception e) {
-                Log.e("Error", "Error ", e);
-                return null;
-            } finally{
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
-            }
-        }
-
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Intent telaPrincipal = null;
-            if(Util.getStatusFromJSON(serverResponseMessage).equals("true")) {
-                Toast.makeText(TelaLoginActivity.this, "Usuário cadastrado no sistema...!", Toast.LENGTH_SHORT).show();
-                JSONObject jsonValidação = null;
-                Usuario usuario =null;
-                usuario = Util.permissaoLogar(s);
-                if(usuario.getPermissao()=='p')
-                {
-          //          telaPrincipal = new Intent(TelaLoginActivity.this, PrincipalActivity.class);
-                    startActivity(telaPrincipal);
-                }
-                else if(usuario.getPermissao() =='u')
-                {
-            //        telaPrincipal = new Intent(TelaLoginActivity.this, PrincipalActivity.class);
-                    startActivity(telaPrincipal);
-                }
-                else if (usuario.getPermissao()=='e')
-                {
-                //    telaPrincipal = new Intent(TelaLoginActivity.this, PrincipalActivity.class);
-                    startActivity(telaPrincipal);
-                }
-            }else{
-                Toast.makeText(TelaLoginActivity.this, "Falha ao cadastrar o clube.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    private boolean isConnected(){
-        ConnectivityManager cm =
-                (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-    }
     private void redirect(String nomeUsuario,String emailUsuario,String aniversarioUsuario,String fotoUsuario){
         Intent intent = new Intent(TelaLoginActivity.this,MainActivity.class);
         intent.putExtra("nomeUsuario",nomeUsuario);
