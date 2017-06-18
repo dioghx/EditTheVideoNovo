@@ -6,24 +6,7 @@
     android:orientation="vertical"
     android:baselineAligned="false">
 
-    <Button
-        android:id="@+id/btnLogar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logar" />
 
-    <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cadastrar" />
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -37,11 +20,30 @@
             android:id="@+id/editTextSenha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.16"
             android:text="1234"
             android:ems="10"
             android:inputType="textPassword" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnLogar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logar" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/logar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:id="@+id/btnCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar" />
+
 
 </LinearLayout>

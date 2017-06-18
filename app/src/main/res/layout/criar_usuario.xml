@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#003153">
 
     <EditText
         android:id="@+id/editNomeUsuario"
@@ -12,7 +13,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nome" />
+        android:textColorHint="#FFFFFF"
+        android:hint="Nome"
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/editDataUsuario"
@@ -20,7 +23,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Data de Nascimento" />
+        android:textColorHint="#FFFFFF"
+        android:hint="Data Nascimento"
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/editTelefoneUsuario"
@@ -28,7 +33,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Telefone" />
+        android:textColorHint="#FFFFFF"
+        android:hint="Telefone"
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/editEmailUsuario"
@@ -36,14 +43,19 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Email" />
+        android:textColorHint="#FFFFFF"
+        android:hint="Email"
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/editSenhaUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColorHint="#FFFFFF"
+        android:hint="Senha"
+        android:textColor="#FFFFFF"/>
 
     <EditText
         android:id="@+id/editCidadeUsuario"
@@ -51,7 +63,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Cidade" />
+        android:textColorHint="#FFFFFF"
+        android:hint="Cidade"
+        android:textColor="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -69,19 +83,16 @@
         android:id="@+id/spinnerEstado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.10" />
+        android:layout_weight="0.10"
+        android:textColor="#FFFFFF"/>
 
-    <Button
-        android:id="@+id/btnVoltar"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:onClick="btnVoltar"
-        android:text="Voltar" />
 
     <Button
         android:id="@+id/btnCadastrarUsuario"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="Cadastrar"
+        android:background="#af0566d6"
         android:onClick="cadastrarUsuario"/>
 </LinearLayout>
