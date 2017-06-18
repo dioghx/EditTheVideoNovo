@@ -87,7 +87,9 @@ public class Util {
         }
     }
 
-    public static List<Profissional> JSONProfissionalLista(String jsonFile) {
+    public static List<Profissional> JSONProfissionalLista(String jsonFile)
+    {
+        int x ;
         JSONObject mainObject;
         Profissional profissional = null;
         List<Profissional> profissionais = null;
