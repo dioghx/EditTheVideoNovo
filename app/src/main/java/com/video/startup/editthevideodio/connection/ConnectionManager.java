@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.video.startup.editthevideodio.connection.dto.GenericDTO;
 import com.video.startup.editthevideodio.util.JsonUtil;
@@ -17,6 +18,51 @@ import java.net.URL;
 
 public class ConnectionManager {
 
+
+
+    /**
+     * Executa GET de forma assincrona ao servidor
+     */
+    public static GenericDTO executeGETAsync(Context context, String url, Action action) throws Exception{
+
+        return new GenericHTTPRequest(context, action){
+
+            @Override
+            protected String doInBackground(Object... params) {
+                HttpURLConnection urlConnection = null;
+                try {
+                    urlConnection = (HttpURLConnection) new URL((String)params[1]).openConnection();
+                    urlConnection.setRequestMethod("GET");
+                    urlConnection.setRequestProperty("Content-type", "application/json");
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+
+                    DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
+
+                    urlConnection.getResponseCode();
+                    String response = Util.webToString(urlConnection.getInputStream());
+
+                    outputStream.flush();
+                    outputStream.close();
+
+                    return response ;
+                } catch (Exception e) {
+                    Log.e("Error", "Error ", e);
+                    return null;
+                } finally{
+                    if (urlConnection != null) {
+                        urlConnection.disconnect();
+                    }
+                }
+            }
+
+            GenericDTO doRequest(Object... getParamIn){
+                execute(getParamIn);
+                return payload;
+            }
+        }.doRequest(url);
+
+    }
 
 
     /**
@@ -102,7 +148,7 @@ public class ConnectionManager {
             super.onPostExecute(s);
             GenericDTO dto = JsonUtil.jsonToGeneric(s);
             if(!dto.isOk()) {
-//                tratar erro
+                Log.e("Error", "Error ", new Exception(dto.getMensagem()));
             }
             postAction.action(dto);
             payload = dto;
