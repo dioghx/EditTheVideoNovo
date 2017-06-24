@@ -11,21 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="#ffffff"
         >
-
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#003153"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="#024563"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+        </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#003153"
+            android:background="#f205325b"
+            style="@style/MyCustomTabText"
             >
 
         </android.support.design.widget.TabLayout>
@@ -35,7 +36,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager_app_bar"
         android:layout_width="wrap_content"
-        android:layout_height="548dp"
+        android:layout_height="match_parent"
         android:layout_below="@id/tab_layout" />/>
 
 </android.support.design.widget.CoordinatorLayout>

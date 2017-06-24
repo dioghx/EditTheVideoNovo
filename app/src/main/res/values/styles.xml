@@ -13,6 +13,30 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="TextoxExibicao" >
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">18sp</item>
+        <item name ="android:layout_centerHorizontal">true</item>
+        <item name ="android:textAlignment">center</item>
+        <item name ="android:textColor">#FFFFFF</item>
+        </style>
+
+    <style name ="RatingBarExibicao" parent="@style/Theme.AppCompat">
+        <item name="colorControlNormal">@color/starColor</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:numStars">5</item>
+        <item name ="android:isIndicator">true</item>
+
+    </style>
+
+    <style name="MyCustomTabText" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="Base.ThemeOverlay.AppCompat.Light"
         />
 

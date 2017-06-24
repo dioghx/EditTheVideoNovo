@@ -32,10 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:textColorHint="#FFFFFF"
         android:hint="Telefone"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:inputType="phone"
+        />
 
     <EditText
         android:id="@+id/editEmailUsuario"

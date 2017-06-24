@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -44,6 +45,7 @@ public class CriarUsuarioActivity extends Activity {
         EditText editEmailUsuario = (EditText) findViewById(R.id.editEmailUsuario);
         EditText editSenhaUsuario = (EditText) findViewById(R.id.editSenhaUsuario);
         EditText editCidadeUsuario = (EditText) findViewById(R.id.editCidadeUsuario);
+        editTelefoneUsuario.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
 
     public void cadastrarUsuario(View v){
@@ -55,76 +57,10 @@ public class CriarUsuarioActivity extends Activity {
         usuario.setSenha(editSenhaUsuario.getText().toString());
         usuario.getEndereco().setCidade(editCidadeUsuario.getText().toString());
 
-        if(isConnected()) {
-            new cadastrarUsuario().execute(usuario);
-            Intent paginaPrincipal = new Intent(CriarUsuarioActivity.this,MainActivity.class);
-            startActivity(paginaPrincipal);
-            finish();
-        }
-        else
-            Toast.makeText(this, "Verifique a conexão com a internet...", Toast.LENGTH_SHORT).show();
+
     }
-    private class cadastrarUsuario extends AsyncTask<Usuario, Void, String> {
 
-        ProgressDialog progress;
-        int serverResponseCode;
-        String serverResponseMessage;
 
-        @Override
-        protected String doInBackground(Usuario... params) {
-            HttpURLConnection urlConnection = null;
-            try {
-                //Utilizar url do webservice de logar
-                //URL url = new URL("");
-     //           urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Content-type", "application/json");
-                urlConnection.setDoInput(true);
-                urlConnection.setDoOutput(true);
-
-                DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
-
-                String result = Util.convertObjectJSON(params[0]);
-                outputStream.writeBytes(result);
-
-                serverResponseCode = urlConnection.getResponseCode();
-                serverResponseMessage = Util.webToString(urlConnection.getInputStream());
-
-                outputStream.flush();
-                outputStream.close();
-
-                return result ;
-            } catch (Exception e) {
-                Log.e("Error", "Error ", e);
-                return null;
-            } finally{
-                if (urlConnection != null) {
-                    urlConnection.disconnect();
-                }
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            Intent telaPrincipal = null;
-            if(Util.getStatusFromJSON(serverResponseMessage).equals("true")) {
-                Toast.makeText(CriarUsuarioActivity.this, "Usuário cadastrada no sistema...!", Toast.LENGTH_SHORT).show();
-                telaPrincipal = new Intent(CriarUsuarioActivity.this, MainActivity.class);
-                startActivity(telaPrincipal);
-            }else{
-                Toast.makeText(CriarUsuarioActivity.this, "Falha ao cadastrar o usuário.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    private boolean isConnected(){
-        ConnectivityManager cm =
-                (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-    }
     public void btnVoltar(View v)
     {
         Intent intent = new Intent(v.getContext(),EscolherCadastroActivity.class);

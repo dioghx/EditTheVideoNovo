@@ -1,65 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundPrincipalColor">
+
 
     <ImageView
         android:id="@+id/imageViewMostrarProfissional"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:srcCompat="@mipmap/ic_launcher_round"
         android:isIndicator="true"
-        android:layout_above="@+id/editTelefoneMostrarProfissional"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
+        style="@style/TextoxExibicao"
         android:id="@+id/editNomeMostrarProfissional"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:isIndicator="true"
-        android:layout_marginEnd="22dp"
-        android:layout_marginTop="11dp"
         android:ems="10"
         android:inputType="date"
         android:text="Nome"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-medium"
+        android:layout_below="@+id/ratingBarProfissionalMostrar"
+        android:layout_centerHorizontal="true" />
 
     <TextView
+        style="@style/TextoxExibicao"
         android:id="@+id/editEmailMostrarProfissional"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:isIndicator="true"
-        android:layout_alignStart="@+id/editNomeMostrarProfissional"
-        android:layout_below="@+id/editNomeMostrarProfissional"
         android:ems="10"
         android:inputType="date"
-        android:text="Email" />
+        android:text="Email"
+        android:layout_below="@+id/ratingBarProfissionalMostrar"
+        android:layout_alignStart="@+id/editTelefoneMostrarProfissional"
+        android:layout_marginTop="84dp" />
 
     <TextView
         android:id="@+id/editTelefoneMostrarProfissional"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editEmailMostrarProfissional"
-        android:layout_below="@+id/editEmailMostrarProfissional"
+        style="@style/TextoxExibicao"
         android:ems="10"
         android:isIndicator="true"
         android:inputType="phone"
-        android:text="Telefone" />
+        android:text="Telefone"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/editNomeMostrarProfissional" />
+    <RatingBar
+        style="@style/RatingBarExibicao"
+        android:theme="@style/RatingBarExibicao"
+        android:id="@+id/ratingBarProfissionalMostrar"
+        android:isIndicator="true"
+        android:layout_below="@+id/imageViewMostrarProfissional"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/editDescricaoMostrarProfissional"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editTelefoneMostrarProfissional"
-        android:layout_alignStart="@+id/imageViewMostrarProfissional"
-        android:layout_below="@+id/editTelefoneMostrarProfissional"
-        android:layout_marginTop="68dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:ems="10"
         android:isIndicator="true"
         android:inputType="date"
-        android:text="Descrição" />
+        android:text="Descrição"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/editEmailMostrarProfissional"
+        android:layout_alignStart="@+id/editEmailMostrarProfissional"
+        android:layout_marginTop="13dp" />
 
 </RelativeLayout>

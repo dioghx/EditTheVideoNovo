@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.video.startup.editthevideodio.R;
@@ -20,6 +21,7 @@ public class MostarProfissional extends AppCompatActivity {
     TextView  editTextEmailMostrarProfissional;
     TextView  editTextTelefoneMostrarProfissional;
     TextView editTextDescricaoMostrarProfissional;
+    RatingBar ratingBarMostarProfissional;
 
 
 
@@ -34,6 +36,7 @@ public class MostarProfissional extends AppCompatActivity {
         editTextEmailMostrarProfissional=(TextView)findViewById(R.id.editEmailMostrarProfissional);
         editTextTelefoneMostrarProfissional=(TextView)findViewById(R.id.editTelefoneMostrarProfissional);
         editTextDescricaoMostrarProfissional=(TextView)findViewById(R.id.editDescricaoMostrarProfissional);
+
 
         imageViewMostrarProfissional.setImageResource(R.drawable.ic_menu_camera);
         editTextNomeMostrarProfissional.setText(extras.getString("nomeProfissional"));

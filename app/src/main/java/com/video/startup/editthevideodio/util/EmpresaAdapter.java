@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by Diogo on 11/06/2017.
  */
 
-public class EmpresaAdapter extends ArrayAdapter<Empresa> {
+public class EmpresaAdapter extends ArrayAdapter<Empresa> implements Filterable {
     private int layout;
 
     public EmpresaAdapter(Context context , int layout , List<Empresa> empresas)

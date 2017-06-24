@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+     >
 
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/cadastrarMain"
             android:icon="@drawable/ic_menu_camera"
@@ -12,24 +14,16 @@
             android:id="@+id/logarMain"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Logar" />
+        <item
+            android:id="@+id/configuraçoesMain"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Configurações" />
+        <item
+            android:id="@+id/deslogarMain"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Deslogar" />
 
     </group>
 
-    <item
-        android:id="@+id/nav_manage"
-        android:icon="@drawable/ic_menu_manage"
-        android:title="Configurações" />
-    <item android:title="Compartilhar">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
 
 </menu>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -98,6 +99,7 @@ public class TelaLoginActivity extends Activity
                                  String birthday = object.getString("birthday");
                                     String foto = "https://graph.facebook.com/"+id+"/picture?height=120&width=120";
                                     redirect(name,email,birthday,foto);
+                                    finish();
                                 }
                             catch (JSONException e)
                             {
@@ -168,11 +170,13 @@ public class TelaLoginActivity extends Activity
 
 
     private void redirect(String nomeUsuario,String emailUsuario,String aniversarioUsuario,String fotoUsuario){
+        SharedPreferences.Editor editor = getSharedPreferences("pref", MODE_PRIVATE).edit();
+        editor.putString("nomeUsuario",nomeUsuario);
+        editor.putString("fotoUsuario", fotoUsuario);
+        editor.putString("emailUsuario", emailUsuario);
+        editor.putString("aniversarioUsuario", aniversarioUsuario);
+        editor.commit();
         Intent intent = new Intent(TelaLoginActivity.this,MainActivity.class);
-        intent.putExtra("nomeUsuario",nomeUsuario);
-        intent.putExtra("fotoUsuario",fotoUsuario);
-        intent.putExtra("emailUsuario",emailUsuario);
-        intent.putExtra("aniversarioUsuario",aniversarioUsuario);
         startActivity(intent);
     }
 

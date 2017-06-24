@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name ="backgroundPrincipalColor">#003153</color>
+    <color name ="starColor">#FFF44F</color>
+    <color name ="grey">#8c8c8c</color>
+
 </resources>

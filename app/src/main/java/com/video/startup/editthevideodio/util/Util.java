@@ -1,9 +1,15 @@
 package com.video.startup.editthevideodio.util;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 import com.video.startup.editthevideodio.model.Empresa;
 import com.video.startup.editthevideodio.model.Endereco;
 import com.video.startup.editthevideodio.model.Genero;
@@ -21,6 +27,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -108,4 +115,21 @@ public class Util {
     public static void toastShort(String msg, Activity a){
         Toast.makeText(a.getApplicationContext(),msg, Toast.LENGTH_SHORT).show();
     }
+
+    public void  loadImage(Context context, String urlImage, View view)
+    {
+        Picasso.with(context).load(urlImage).into((ImageView) view);
+    }
+
+    public boolean setarBoleanaIntent(SharedPreferences sh)
+    {
+        if(sh !=null && sh.contains("nomeUsuario"))
+        {
+            return true;
+        }
+        else return false;
+
+    }
+
+
 }
