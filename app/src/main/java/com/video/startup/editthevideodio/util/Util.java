@@ -109,11 +109,15 @@ public class Util {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return (String)p;
+        return p.toString();
     }
 
     public static void toastShort(String msg, Activity a){
         Toast.makeText(a.getApplicationContext(),msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void toastShort(String msg, Context a){
+        Toast.makeText(a, msg, Toast.LENGTH_SHORT).show();
     }
 
     public void  loadImage(Context context, String urlImage, View view)

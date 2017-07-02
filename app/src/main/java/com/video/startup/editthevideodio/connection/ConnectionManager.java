@@ -1,6 +1,7 @@
 package com.video.startup.editthevideodio.connection;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,35 +16,30 @@ import com.video.startup.editthevideodio.util.Util;
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 public class ConnectionManager {
-
 
 
     /**
      * Executa GET de forma assincrona ao servidor
      */
-    public static GenericDTO executeGETAsync(Context context, String url, Action action) throws Exception{
+    public static void executeGETAsync(Context context, String url, Action action) throws Exception{
 
-        return new GenericHTTPRequest(context, action){
+        new GenericHTTPRequest(context, action){
 
             @Override
             protected String doInBackground(Object... params) {
                 HttpURLConnection urlConnection = null;
                 try {
-                    urlConnection = (HttpURLConnection) new URL((String)params[1]).openConnection();
+                    urlConnection = (HttpURLConnection) new URL((String)params[0]).openConnection();
                     urlConnection.setRequestMethod("GET");
-                    urlConnection.setRequestProperty("Content-type", "application/json");
-                    urlConnection.setDoInput(true);
-                    urlConnection.setDoOutput(true);
+                    urlConnection.setRequestProperty("accept", "application/json");
+                    urlConnection.connect();
 
-                    DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
 
                     urlConnection.getResponseCode();
                     String response = Util.webToString(urlConnection.getInputStream());
-
-                    outputStream.flush();
-                    outputStream.close();
 
                     return response ;
                 } catch (Exception e) {
@@ -55,15 +51,15 @@ public class ConnectionManager {
                     }
                 }
             }
-
-            GenericDTO doRequest(Object... getParamIn){
-                execute(getParamIn);
-                return payload;
-            }
-        }.doRequest(url);
-
+        }.execute(url);
     }
 
+    /**
+     * Executa GET de forma assincrona ao servidor sem ação
+     */
+    public static void executeGETAsync(Context context, String url) throws Exception {
+        executeGETAsync(context, url, (GenericDTO dto) -> {});
+    }
 
     /**
      * Executa POST de forma assincrona ao servidor
@@ -118,7 +114,6 @@ public class ConnectionManager {
         return executePOSTAsync(postParam, context, url, (GenericDTO dto) -> {});
     }
 
-
     /**
      * Classe async base para outros tipos de requests http
      */
@@ -134,14 +129,14 @@ public class ConnectionManager {
         Action postAction;
 
         @Override
-        protected String doInBackground(Object... params){return null;}
-
-        @Override
         protected void onPreExecute() {
             if(!isConnected()){
                 throw new RuntimeException("Erro de conexao com internet");
             }
         }
+
+        @Override
+        protected String doInBackground(Object... params){return null;}
 
         @Override
         protected void onPostExecute(String s) {
@@ -163,7 +158,6 @@ public class ConnectionManager {
                     activeNetwork.isConnectedOrConnecting();
         }
     }
-
 
     /**
      * Classes usadas para passagem e execução de ações apos async

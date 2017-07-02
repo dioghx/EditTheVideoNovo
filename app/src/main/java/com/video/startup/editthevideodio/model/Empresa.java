@@ -7,8 +7,8 @@ package com.video.startup.editthevideodio.model;
 public class Empresa {
 
     private int       id;
-    private String    nome_curto;
-    private String    razao_social;
+    private String    nome_Curto;
+    private String    razao_Social;
     private String    cnpj;
     private Usuario   usuario;
     private String    descricao;
@@ -27,23 +27,23 @@ public class Empresa {
 
     public String getNome_Curto()
     {
-        return nome_curto;
+        return nome_Curto;
     }
 
 
     public void setNome_Curto(String pNome_Curto)
     {
-        this.nome_curto = pNome_Curto;
+        this.nome_Curto = pNome_Curto;
     }
 
     public String getRazao_Social()
     {
-        return razao_social;
+        return razao_Social;
     }
 
     public void setRazao_Social(String pRazao_Social)
     {
-        this.razao_social = pRazao_Social;
+        this.razao_Social = pRazao_Social;
     }
 
     public Usuario getUsuario() {

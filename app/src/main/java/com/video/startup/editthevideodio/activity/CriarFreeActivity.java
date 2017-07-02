@@ -62,11 +62,6 @@ public class CriarFreeActivity extends  Activity{
         profissional.getUsuario().getEndereco().setCidade(editCidadeFree.getText().toString());
 
         try {
-            ConnectionManager.executePOSTAsync(profissional, this, ConstantesApp.APP_CRIAR_FREE, (GenericDTO dto) -> {
-                        toastShort("Empresa cadastrada!",this);
-                        startActivity(new Intent(this, MainActivity.class));
-                    }
-            );
         } catch (Exception e) {
             Log.e("Error", "Error ", e);
             toastShort("Erro ao cadastrar!",this);
