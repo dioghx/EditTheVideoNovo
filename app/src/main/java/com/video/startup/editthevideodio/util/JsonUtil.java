@@ -1,11 +1,14 @@
 package com.video.startup.editthevideodio.util;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.video.startup.editthevideodio.connection.dto.GenericDTO;
 import com.video.startup.editthevideodio.constantes.ConstantesApp;
 import com.video.startup.editthevideodio.model.Empresa;
 import com.video.startup.editthevideodio.model.Endereco;
+import com.video.startup.editthevideodio.model.Profissional;
 import com.video.startup.editthevideodio.model.Usuario;
 
 import org.json.JSONException;
@@ -74,6 +77,9 @@ public class JsonUtil {
         if(json.has(ConstantesApp.ENDERECO_JSON)){
             return jsonToEndereco(json);
         }
+        if(json.has(ConstantesApp.PROFISSIONAL_JSON)){
+            return jsonToProfissional(json);
+        }
         return null;
     }
 
@@ -96,6 +102,18 @@ public class JsonUtil {
         return empresa;
     }
 
+    private static Profissional jsonToProfissional(JSONObject json) throws JSONException{
+         JSONObject empresaJson = json.getJSONObject(ConstantesApp.PROFISSIONAL_JSON);
+        Profissional profissional = gson.fromJson(empresaJson.toString(), Profissional.class);
+
+        JSONObject usuarioJson = empresaJson.getJSONObject(ConstantesApp.USUARIO_JSON);
+        Usuario usuario = gson.fromJson(usuarioJson.toString(), Usuario.class);
+
+        usuario.setEndereco(gson.fromJson(usuarioJson.getJSONObject(ConstantesApp.ENDERECO_JSON).toString(), Endereco.class));
+        profissional.setUsuario(usuario);
+        return profissional;
+    }
+
     private static Endereco jsonToEndereco(JSONObject json) throws JSONException{
         return gson.fromJson(json.getJSONObject(ConstantesApp.ENDERECO_JSON).toString(), Endereco.class);
     }
@@ -105,6 +123,22 @@ public class JsonUtil {
             return true;
         }
         return false;
+    }
+
+    public static String toJSON(Object p){
+        if(p instanceof  Endereco){
+            return gson.toJson(p, Endereco.class);
+        }
+        if(p instanceof  Usuario){
+            return gson.toJson(p, Usuario.class);
+        }
+        if(p instanceof  Empresa){
+            return gson.toJson(p, Empresa.class);
+        }
+        if(p instanceof  Profissional){
+            return gson.toJson(p, Profissional.class);
+        }
+        return null;
     }
 
 }

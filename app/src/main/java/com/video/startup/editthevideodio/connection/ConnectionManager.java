@@ -75,12 +75,10 @@ public class ConnectionManager {
                     urlConnection = (HttpURLConnection) new URL((String)params[1]).openConnection();
                     urlConnection.setRequestMethod("POST");
                     urlConnection.setRequestProperty("Content-type", "application/json");
-                    urlConnection.setDoInput(true);
-                    urlConnection.setDoOutput(true);
 
                     DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
 
-                    outputStream.writeBytes(Util.convertObjectJSON(params[0]));
+                    outputStream.writeBytes(JsonUtil.toJSON(params[0]));
 
                     urlConnection.getResponseCode();
                     String response = Util.webToString(urlConnection.getInputStream());

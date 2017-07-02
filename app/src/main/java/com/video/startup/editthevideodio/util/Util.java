@@ -107,11 +107,11 @@ public class Util {
         Gson gson = new Gson();
         try {
 
-            gson.toJson(p, GenericDTO.class);
+            return gson.toJson(p, GenericDTO.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return p.toString();
+        return null;
     }
 
     public static void toastShort(String msg, Activity a){
