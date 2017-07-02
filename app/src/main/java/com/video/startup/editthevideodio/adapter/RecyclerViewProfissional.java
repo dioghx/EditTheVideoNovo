@@ -1,8 +1,7 @@
-package com.video.startup.editthevideodio.util;
+package com.video.startup.editthevideodio.adapter;
 
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.video.startup.editthevideodio.model.Profissional;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 /**

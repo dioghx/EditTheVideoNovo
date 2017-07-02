@@ -10,9 +10,6 @@ import android.widget.ListView;
 
 import com.video.startup.editthevideodio.R;
 import com.video.startup.editthevideodio.model.Empresa;
-import com.video.startup.editthevideodio.model.Profissional;
-import com.video.startup.editthevideodio.model.Usuario;
-import com.video.startup.editthevideodio.util.EmpresaAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +20,12 @@ import java.util.List;
 
 public class TabEmpresaFragment extends Fragment {
     List<Empresa> empresas;
-    EmpresaAdapter empresaAdapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.tab_empresas_fragment,container,false);
         empresas = getData();
-        empresaAdapter = new EmpresaAdapter(getContext(),R.layout.layout_empresa,empresas);
-        ListView listView = (ListView)view.findViewById(R.id.listview_empresas);
-        listView.setAdapter(empresaAdapter);
         return view;
 
     }

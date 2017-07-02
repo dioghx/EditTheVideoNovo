@@ -1,9 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.video.startup.editthevideodio.activity.ConfiguracoesActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="#ffffff"
+        android:id="@+id/appBarLayout">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_configuracoes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#024563"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+        </android.support.v7.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+    <TextView
+        style="@style/perfil_label_mostrar_atributos"
+        android:id="@+id/textViewLabelNome"
+        android:text="Nome"
+        android:layout_alignBaseline="@+id/perfil_edit_mostrar_nome"
+        android:layout_alignBottom="@+id/perfil_edit_mostrar_nome"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        style="@style/perfil_edit_mostrar_atributos"
+        android:id="@+id/perfil_edit_mostrar_nome"
+        android:hint="Nome"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        style="@style/perfil_label_mostrar_atributos"
+        android:id="@+id/textViewLabelTelefone"
+        android:text="Telefone"
+        android:layout_alignBaseline="@+id/perfil_edit_mostrar_telefone"
+        android:layout_alignBottom="@+id/perfil_edit_mostrar_telefone"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        style="@style/perfil_edit_mostrar_atributos"
+        android:id="@+id/perfil_edit_mostrar_telefone"
+        android:hapticFeedbackEnabled="true"
+        android:hint="Telefone"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/textViewLabelNome"
+        android:layout_toEndOf="@+id/textViewLabelTelefone" />
+
+    <TextView
+        style="@style/perfil_label_mostrar_atributos"
+        android:id="@+id/perfil_label_mostrar_estado"
+        android:text="Estado"
+        android:layout_alignBaseline="@+id/perfil_edit_mostrar_estado"
+        android:layout_alignBottom="@+id/perfil_edit_mostrar_estado"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        style="@style/perfil_edit_mostrar_atributos"
+        android:id="@+id/perfil_edit_mostrar_estado"
+        android:hint="Estado"
+        android:layout_below="@+id/perfil_edit_mostrar_telefone"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="13dp" />
+
+    <TextView
+        style="@style/perfil_label_mostrar_atributos"
+        android:id="@+id/perfil_label_mostrar_cidade"
+        android:text="Cidade"
+        android:layout_below="@+id/perfil_label_mostrar_estado"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        style="@style/perfil_edit_mostrar_atributos"
+        android:id="@+id/perfil_edit_mostrar_cidade"
+        android:hint="Cidade"
+        android:layout_alignBaseline="@+id/perfil_label_mostrar_cidade"
+        android:layout_alignBottom="@+id/perfil_label_mostrar_cidade"
+        android:layout_alignParentEnd="true" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="180sp"
+        android:id="@+id/recyclerViewAdicionarVideo"
+        android:layout_above="@+id/buttonAdicionarVideo"
+        android:layout_alignParentStart="true" />
+
+
+    <Button
+        android:id="@+id/buttonAdicionarVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adicionar Video"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textViewPortifolio"
+        android:layout_width="160sp"
+        android:layout_height="40sp"
+        android:text="Portifólio"
+        android:fontFamily="sans-serif-condensed"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:typeface="normal"
+        android:layout_above="@+id/recyclerViewAdicionarVideo"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

@@ -15,12 +15,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.video.startup.editthevideodio.R;
+import com.video.startup.editthevideodio.connection.ConnectionManager;
+import com.video.startup.editthevideodio.connection.dto.GenericDTO;
+import com.video.startup.editthevideodio.constantes.ConstantesApp;
+import com.video.startup.editthevideodio.model.Endereco;
 import com.video.startup.editthevideodio.model.Usuario;
 import com.video.startup.editthevideodio.util.Util;
 
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 
+import static com.video.startup.editthevideodio.util.Util.toastShort;
 
 
 /**
@@ -35,28 +40,43 @@ public class CriarUsuarioActivity extends Activity {
     private EditText editEmailUsuario;
     private EditText editSenhaUsuario;
     private EditText editCidadeUsuario;
+    Usuario usuario;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.criar_usuario);
-        EditText editNomeUsuario = (EditText) findViewById(R.id.editNomeUsuario);
-        EditText editDataUsuario = (EditText) findViewById(R.id.editDataUsuario);
-        EditText editTelefoneUsuario = (EditText) findViewById(R.id.editTelefoneUsuario);
-        EditText editEmailUsuario = (EditText) findViewById(R.id.editEmailUsuario);
-        EditText editSenhaUsuario = (EditText) findViewById(R.id.editSenhaUsuario);
-        EditText editCidadeUsuario = (EditText) findViewById(R.id.editCidadeUsuario);
+        editNomeUsuario = (EditText) findViewById(R.id.editNomeUsuario);
+        editDataUsuario = (EditText) findViewById(R.id.editDataUsuario);
+        editTelefoneUsuario = (EditText) findViewById(R.id.editTelefoneUsuario);
+        editEmailUsuario = (EditText) findViewById(R.id.editEmailUsuario);
+        editSenhaUsuario = (EditText) findViewById(R.id.editSenhaUsuario);
+        editCidadeUsuario = (EditText) findViewById(R.id.editCidadeUsuario);
         editTelefoneUsuario.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
 
     public void cadastrarUsuario(View v){
-        Usuario usuario = new Usuario();
+
+        usuario = new Usuario();
+        String s = editEmailUsuario.getText().toString();
         usuario.setNome(editNomeUsuario.getText().toString());
         usuario.setNascimento(editDataUsuario.getText().toString());
         usuario.setTelefone(editTelefoneUsuario.getText().toString());
         usuario.setEmail(editEmailUsuario.getText().toString());
         usuario.setSenha(editSenhaUsuario.getText().toString());
-        usuario.getEndereco().setCidade(editCidadeUsuario.getText().toString());
+        Endereco endereco  = new Endereco();
+        endereco.setCidade(editCidadeUsuario.getText().toString());
+        usuario.setEndereco(endereco);
 
+        try {
+            ConnectionManager.executePOSTAsync(usuario, this, ConstantesApp.APP_CRIAR_USUARIO, (GenericDTO dto) -> {
+                        toastShort("Usuário cadastrado!",this);
+                        startActivity(new Intent(this, TelaLoginActivity.class));
+                    }
+            );
+        } catch (Exception e) {
+            Log.e("Error", "Error ", e);
+            toastShort("Erro ao cadastrar!",this);
+        }
 
     }
 

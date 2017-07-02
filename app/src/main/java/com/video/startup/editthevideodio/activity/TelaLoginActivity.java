@@ -67,16 +67,21 @@ public class TelaLoginActivity extends Activity
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.tela_login);
+
+
         EditText editTextEmail = (EditText)findViewById(R.id.editTextEmail);
         EditText editTextSenha = (EditText)findViewById(R.id.editTextSenha);
         Button btnLogar = (Button)findViewById(R.id.btnLogar);
         Button btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
+
 
         loginButton = (LoginButton) findViewById(R.id.logar);
         loginButton.setReadPermissions(Arrays.asList(
                 "public_profile", "email", "user_birthday", "user_friends"));
 
         callbackManager = CallbackManager.Factory.create();
+
+
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -94,9 +99,9 @@ public class TelaLoginActivity extends Activity
                                 // Application code
                                 try{
                                     String id = object.getString("id");
-                                 String name = object.getString("name");
-                                 String email = object.getString("email");
-                                 String birthday = object.getString("birthday");
+                                    String name = object.getString("name");
+                                    String email = object.getString("email");
+                                    String birthday = object.getString("birthday");
                                     String foto = "https://graph.facebook.com/"+id+"/picture?height=120&width=120";
                                     redirect(name,email,birthday,foto);
                                     finish();
@@ -108,6 +113,7 @@ public class TelaLoginActivity extends Activity
 
 
                         }});
+
                 Bundle parameters = new Bundle();
                 parameters.putString("fields", "id,name,email,gender,birthday,picture.width(120).height(120)");
                 request.setParameters(parameters);
@@ -128,10 +134,6 @@ public class TelaLoginActivity extends Activity
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
 
     public void logarUsuario(View v)
     {
@@ -180,5 +182,9 @@ public class TelaLoginActivity extends Activity
         startActivity(intent);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
 }

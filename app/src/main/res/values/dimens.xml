@@ -11,4 +11,11 @@
     <dimen name="horizontal_page_margin">@dimen/margin_little</dimen>
     <dimen name="vertical_page_margin">@dimen/margin_little</dimen>
 
+
+    <dimen name="mostrar_atributos_perfil_label_altura">25sp</dimen>
+    <dimen name="mostrar_atributos_perfil_label_largura">80sp</dimen>
+
+    <dimen name="mostrar_atributos_perfil_textView_altura">25sp</dimen>
+    <dimen name="mostrar_atributos_perfil_textView_largura">300sp</dimen>
+
 </resources>

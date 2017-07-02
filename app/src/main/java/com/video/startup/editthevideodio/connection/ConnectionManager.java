@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.video.startup.editthevideodio.connection.dto.GenericDTO;
 import com.video.startup.editthevideodio.util.JsonUtil;
 import com.video.startup.editthevideodio.util.Util;
@@ -31,19 +32,15 @@ public class ConnectionManager {
             protected String doInBackground(Object... params) {
                 HttpURLConnection urlConnection = null;
                 try {
-                    urlConnection = (HttpURLConnection) new URL((String)params[1]).openConnection();
+                    urlConnection = (HttpURLConnection) new URL((String)params[0]).openConnection();
                     urlConnection.setRequestMethod("GET");
-                    urlConnection.setRequestProperty("Content-type", "application/json");
+                   //urlConnection.setRequestProperty("Content-type", "application/json");
                     urlConnection.setDoInput(true);
-                    urlConnection.setDoOutput(true);
 
-                    DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
+                    int test =urlConnection.getResponseCode();
 
-                    urlConnection.getResponseCode();
                     String response = Util.webToString(urlConnection.getInputStream());
 
-                    outputStream.flush();
-                    outputStream.close();
 
                     return response ;
                 } catch (Exception e) {
@@ -65,6 +62,9 @@ public class ConnectionManager {
     }
 
 
+
+
+
     /**
      * Executa POST de forma assincrona ao servidor
      */
@@ -84,9 +84,10 @@ public class ConnectionManager {
 
                     DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
 
+                    int x = urlConnection.getResponseCode();
+
                     outputStream.writeBytes(Util.convertObjectJSON(params[0]));
 
-                    urlConnection.getResponseCode();
                     String response = Util.webToString(urlConnection.getInputStream());
 
                     outputStream.flush();
@@ -133,7 +134,8 @@ public class ConnectionManager {
         Context viewContext;
         Action postAction;
 
-        @Override
+
+
         protected String doInBackground(Object... params){return null;}
 
         @Override

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+import com.video.startup.editthevideodio.connection.dto.GenericDTO;
 import com.video.startup.editthevideodio.model.Empresa;
 import com.video.startup.editthevideodio.model.Endereco;
 import com.video.startup.editthevideodio.model.Genero;
@@ -105,11 +106,12 @@ public class Util {
     public static String convertObjectJSON(Object p){
         Gson gson = new Gson();
         try {
-            gson.toJson(p);
+
+            gson.toJson(p, GenericDTO.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return (String)p;
+        return p.toString();
     }
 
     public static void toastShort(String msg, Activity a){

@@ -1,4 +1,4 @@
-package com.video.startup.editthevideodio.util;
+package com.video.startup.editthevideodio.adapter;
 
 
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ import com.video.startup.editthevideodio.R;
 import com.video.startup.editthevideodio.model.Profissional;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**

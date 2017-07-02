@@ -1,4 +1,4 @@
-package com.video.startup.editthevideodio.util;
+package com.video.startup.editthevideodio.adapter;
 
 /**
  * Created by Diogo on 09/06/2017.
