@@ -6,5 +6,6 @@
         android:icon="@drawable/freelancer"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView"/>
+    
 
 </menu>

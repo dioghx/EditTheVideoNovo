@@ -13,22 +13,22 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="TextoxExibicao" >
+    <style name="TextoxExibicao">
         <item name="android:layout_height">25dp</item>
         <item name="android:layout_width">300dp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">18sp</item>
-        <item name ="android:layout_centerHorizontal">true</item>
-        <item name ="android:textAlignment">center</item>
-        <item name ="android:textColor">#FFFFFF</item>
-        </style>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 
-    <style name ="RatingBarExibicao" parent="@style/Theme.AppCompat">
+    <style name="RatingBarExibicao" parent="@style/Theme.AppCompat">
         <item name="colorControlNormal">@color/starColor</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:numStars">5</item>
-        <item name ="android:isIndicator">true</item>
+        <item name="android:isIndicator">true</item>
 
     </style>
 
@@ -37,9 +37,23 @@
         <item name="android:textColor">@color/grey</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="Base.ThemeOverlay.AppCompat.Light"
-        />
+    <style name="AppTheme.AppBarOverlay" parent="Base.ThemeOverlay.AppCompat.Light" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="perfil_label_mostrar_atributos">
+        <item name="android:layout_height">@dimen/mostrar_atributos_perfil_label_altura</item>
+        <item name="android:layout_width">@dimen/mostrar_atributos_perfil_label_largura</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+
+    <style name="perfil_edit_mostrar_atributos">
+        <item name="android:layout_height">@dimen/mostrar_atributos_perfil_textView_altura</item>
+        <item name="android:layout_width">@dimen/mostrar_atributos_perfil_textView_largura</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
 
 </resources>

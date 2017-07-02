@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -35,9 +40,9 @@
         android:ems="10"
         android:inputType="date"
         android:text="Email"
-        android:layout_below="@+id/ratingBarProfissionalMostrar"
-        android:layout_alignStart="@+id/editTelefoneMostrarProfissional"
-        android:layout_marginTop="84dp" />
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/editTelefoneMostrarProfissional"
+        android:layout_alignStart="@+id/editNomeMostrarProfissional" />
 
     <TextView
         android:id="@+id/editTelefoneMostrarProfissional"
@@ -46,8 +51,9 @@
         android:isIndicator="true"
         android:inputType="phone"
         android:text="Telefone"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/editNomeMostrarProfissional" />
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/editNomeMostrarProfissional"
+        android:layout_alignStart="@+id/editEmailMostrarProfissional" />
     <RatingBar
         style="@style/RatingBarExibicao"
         android:theme="@style/RatingBarExibicao"
@@ -66,8 +72,30 @@
         android:text="Descrição"
         android:textSize="16sp"
         android:textColor="#FFFFFF"
+        android:layout_marginTop="16dp"
         android:layout_below="@+id/editEmailMostrarProfissional"
-        android:layout_alignStart="@+id/editEmailMostrarProfissional"
-        android:layout_marginTop="13dp" />
+        android:layout_alignStart="@+id/editEmailMostrarProfissional" />
+
+    <TextView
+        android:id="@+id/textViewPortifolioMostrar"
+        android:layout_width="160sp"
+        android:layout_height="40sp"
+        android:text="Portifólio"
+        android:layout_below="@id/editDescricaoMostrarProfissional"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:typeface="normal"
+        android:layout_above="@+id/recyclerViewAdicionarVideo"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="180sp"
+        android:layout_below="@id/textViewPortifolioMostrar"
+        android:id="@+id/recyclerViewMostrarVideo"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
+</ScrollView>

@@ -27,34 +27,28 @@ public class EscolherCadastroActivity extends AppCompatActivity {
         cadastrarFreelancer = (ImageButton)findViewById(R.id.imageButtonCadastrarFreelancer);
         cadastrarEmpresa = (ImageButton)findViewById(R.id.imageButtonCadastrarEmpresa);
 
-        cadastrarUsuario.setOnClickListener(new View.OnClickListener()
+
+        cadastrarUsuario.setOnClickListener((View v) ->
         {
-            @Override
-            public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),CriarUsuarioActivity.class);
                 startActivity(intent);
                 finish();
-            }
         });
 
-        cadastrarFreelancer.setOnClickListener(new View.OnClickListener()
+
+        cadastrarFreelancer.setOnClickListener((View v) ->
         {
-            @Override
-            public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),CriarFreeActivity.class);
                 startActivity(intent);
                 finish();
-            }
         });
 
-        cadastrarEmpresa.setOnClickListener(new View.OnClickListener()
+
+        cadastrarEmpresa.setOnClickListener((View v) ->
         {
-            @Override
-            public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),CriarEmpresaActivity.class);
                 startActivity(intent);
                 finish();
-            }
         });
     }
 }

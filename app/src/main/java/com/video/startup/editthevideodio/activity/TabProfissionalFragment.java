@@ -17,15 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import com.video.startup.editthevideodio.R;
+import com.video.startup.editthevideodio.adapter.OnClick_RecyclerView;
+import com.video.startup.editthevideodio.adapter.RecyclerViewProfissional;
 import com.video.startup.editthevideodio.model.Profissional;
 import com.video.startup.editthevideodio.model.Usuario;
-import com.video.startup.editthevideodio.util.OnClick_RecyclerView;
-import com.video.startup.editthevideodio.util.RecyclerViewProfissional;
+
 import java.util.ArrayList;
-
-
-
-
 
 /**
  * Created by Diogo on 09/06/2017.
@@ -65,7 +62,7 @@ public class TabProfissionalFragment extends Fragment implements SearchView.OnQu
 
         View rootView = inflater.inflate(R.layout.tab_profissionais_fragment, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewProfissional);
-        mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        mLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(),SPAN_COUNT);
         mRecyclerView.setLayoutManager(mLayoutManager);
         profissionalsList =getData();
         recyclerViewProfissional = new RecyclerViewProfissional(getActivity().getApplicationContext(),profissionalsList,this);
@@ -116,6 +113,7 @@ public class TabProfissionalFragment extends Fragment implements SearchView.OnQu
 
             }
         });
+
         //Setando valorres de ação para o objeto junto com a criacao da classe MenuItemCompat
         MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
             @Override
@@ -135,12 +133,16 @@ public class TabProfissionalFragment extends Fragment implements SearchView.OnQu
 
         super.onCreateOptionsMenu(menu,inflater);
     }
-    //Metodo implmentado pela Interface OnTextListener  do SearchView
+
+
+    //Metodo implementado pela Interface OnTextListener  do SearchView
     @Override
     public boolean onQueryTextSubmit(String query) {
 
         return true;
     }
+
+
 //Metodo que manda o adapter que esta implementado junto a um filtro
     @Override
     public boolean onQueryTextChange(String newText) {
@@ -148,6 +150,7 @@ public class TabProfissionalFragment extends Fragment implements SearchView.OnQu
         recyclerViewProfissional.getFilter().filter(newText);
         return true;
     }
+
 
     //Ação da ReciclerView
     @Override

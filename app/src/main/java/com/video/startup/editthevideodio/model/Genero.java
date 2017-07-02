@@ -11,7 +11,6 @@ public class Genero {
     private int id;
     private String nome;
 
-    private List<Video> videos;
 
 
     public int getId() {
@@ -28,13 +27,6 @@ public class Genero {
         this.nome = nome;
     }
 
-
-    public List<Video> getVideos() {
-        return videos;
-    }
-    public void setVideos(List<Video> videos) {
-        this.videos = videos;
-    }
 
 
 }

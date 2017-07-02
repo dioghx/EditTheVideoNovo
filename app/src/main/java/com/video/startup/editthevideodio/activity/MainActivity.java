@@ -1,16 +1,10 @@
 package com.video.startup.editthevideodio.activity;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInstaller;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
-import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,7 +23,6 @@ import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.video.startup.editthevideodio.R;
-import com.video.startup.editthevideodio.util.ProfissionalAdapter;
 import com.video.startup.editthevideodio.util.Util;
 
 public class MainActivity extends AppCompatActivity
@@ -41,7 +34,6 @@ public class MainActivity extends AppCompatActivity
     private TextView nomeUsuario;
     private ImageView imageUsuario;
     private Boolean informacoesFlag;
-    private ProfissionalAdapter profissionalAdapter;
     CallbackManager callbackManager;
 
     @Override
@@ -51,27 +43,26 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         //Vendo se o intent esta com informação
         informacoesFlag =  new Util().setarBoleanaIntent(pref);
         callbackManager = CallbackManager.Factory.create();
+
+
         //Criando tabs na unha
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Profissionais"));
         tabLayout.addTab(tabLayout.newTab().setText("Empresas"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        //Criando viewPager para setar um adapter
         final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager_app_bar);
 
-        //Utilizando Adapter Criando na classe FragmentMainAdapter passando como parâmetros um manager,e  o numero de  tabs para fazer contagem
-        //da quantidade de tabs.
         final FragmentMainAdapter fragmentMainAdapter = new FragmentMainAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(fragmentMainAdapter);
-
-
-        //Adicionando metódos de listener para tab
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
@@ -91,8 +82,6 @@ public class MainActivity extends AppCompatActivity
 
         FacebookSdk.sdkInitialize(this);
         AppEventsLogger.activateApp(this);
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -103,20 +92,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-            //Compara se bundle possui valor
+
         if(informacoesFlag || AccessToken.getCurrentAccessToken()!=null) {
 
-            Bundle extra = getIntent().getExtras();
-            // Instancia um view com referência de navigationview,pegando o primeiro index.
-            //Caso faça uma referência de navigation view em um objeto antes de pegar seu header,ele retornará nulo e lançara
-            //null pointer exception
-            //Versão 23 utiliza listView em uma navigationMain,versões mais atuais utilizam RecyclerView,quando se referência sem
-            //pegar o headerView,o objeto não estará instânciado.
             View header = navigationView.getHeaderView(0);
             nomeUsuario = (TextView) header.findViewById(R.id.mainNomeUsuario);
             imageUsuario = (ImageView) header.findViewById(R.id.imageViewUsuario);
-            new Util().loadImage(this,((SharedPreferences) pref).getString("fotoUsuario",null), imageUsuario);
-            nomeUsuario.setText(((SharedPreferences) pref).getString("nomeUsuario",null));
+            new Util().loadImage(this,pref.getString("fotoUsuario",null), imageUsuario);
+            nomeUsuario.setText(pref.getString("nomeUsuario",null));
         }
 
     }
@@ -133,15 +116,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu menuNav = navigationView.getMenu();
-
         MenuItem cadastrarMainMenu = menuNav.findItem(R.id.cadastrarMain);
         MenuItem logarMainMenu = menuNav.findItem(R.id.logarMain);
         MenuItem configuracoesMainMenu = menuNav.findItem(R.id.configuraçoesMain);
         MenuItem deslogarMainMenu = menuNav.findItem(R.id.deslogarMain);
+
         if (informacoesFlag|| AccessToken.getCurrentAccessToken()!=null )
         {
             cadastrarMainMenu.setVisible(false);
@@ -153,7 +137,6 @@ public class MainActivity extends AppCompatActivity
         }
 
      return true;
-
     }
 
     @Override
@@ -161,7 +144,6 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
 
         return super.onOptionsItemSelected(item);
     }
@@ -185,7 +167,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.configuraçoesMain) {
             Intent intent = new Intent(this,ConfiguracoesActivity.class);
-            this.startActivity(intent);
+            startActivity(intent);
 
         }
         else if (id == R.id.deslogarMain) {
